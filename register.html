@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang = "en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- JS Scripts & CSS Stylesheet -->
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
+  <link href="css/styles.css" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+		<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Titillium+Web:ital,wght@1,600&family=Yantramanav:wght@300&display=swap" rel="stylesheet">
+
+		<title>Jadar</title>
+</head>
+<body>
+
+  <!-- Register: left -->
+  <div class = "container mx-auto">
+    <div class = "row">
+      <div class = "col">
+        <div class = "card text-center" id = "introDiv">
+          <div class = "card-body">
+            <h1 class = "ogLogo mx-auto"> Jadar </h1>
+            <h5 id = "introHeader">Your new favorite contact manager.</h5>
+            <p id = "introBody">Create your book today, all within one simple screen.</p>
+          </div>
+        </div>
+      </div>
+
+    <!-- Register: right -->
+      <div class = "col">
+        <div class = "card text-center" id = "registerDiv">
+          <h2 style = "padding-top: 10%"><strong> Sign Up </strong></h2>
+          <div style="padding-top: 10%;">
+			<span>
+            <form role = "form">
+              <div class="form-row justify-content-center">
+                  <div class="col-auto">
+                    <label id="signup-label" for="first">first name</label>
+                    <input type="text" class="form-control mb-2" id="firstName">
+                  </div>
+                  <div class="col-auto">
+                    <label id="signup-label" for="last">last name</label>
+                    <input type="text" class="form-control mb-2" id="lastName">
+                  </div>
+               </div>
+               <div class="form-row justify-content-center">
+                    <div class="col-auto">
+                      <label id="signup-label" for="user">username</label>
+                      <input type="text" class="form-control mb-2" id="userName">
+                    </div>
+                    <div class="col-auto">
+                      <label id="signup-label" for="pass">password</label>
+                      <input type="password" class="form-control mb-2" id="password">
+                    </div>
+                </div>
+                <div class="form-row justify-content-center">
+                      <div class="col-auto">
+                        <label id="signup-label" for="em">email</label>
+                        <input type="email" class="form-control mb-2" id="userEmail">
+                      </div>
+                </div>
+                <!-- Register button -->
+                <div class="form-row justify-content-center">
+                      <div class="col-auto">
+                        <button type="button" id="registerButton" class="btn btn-link" onclick="blankEntry();">
+                          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="white" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+                          </svg>
+                				</button>
+                        <span id = "registerResult"></span>
+                      </div>
+                </div>
+
+
+				<p id="signupCond" ><p>
+            </form>
+			</span>
+          </div>
+        </div>
+        <!-- Signup Redirect -->
+        <div class = "container">
+          <div class = "row justify-content-center signup-redirect">
+          <h6 id = "register-link">
+            Already have an account?
+            <a href="index.html" id = "login-click"><strong>Log In.</strong></a>
+          </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--
+  <div class="modal fade warning-modal" id="warning" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="warning" aria-hidden="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center" id="edit-contact">Edit Contact</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="false">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-link" id="confirm-edit" data-dismiss="modal">Confirm</button>
+              <button type="button" class="btn btn-link" id="confirm-delete" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  <!-- Bootstrap
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+-->
+
+</body>
+  <script>
+  function blankEntry()
+  {
+    var useEmail = document.getElementById("userEmail").value;
+    var useName = document.getElementById("userName").value;
+    var pw = document.getElementById("password").value;
+    var fn = document.getElementById("firstName").value;
+    var ln = document.getElementById("lastName").value;
+
+
+
+    //makes sure user doesn't leave anything blank
+    if (useEmail === ''||useName === ''||pw === '' || fn === '' || ln =='') {
+      document.getElementById("signupCond").style.visibility = "visible";
+	  document.getElementById("signupCond").style.color = "red";
+	  document.getElementById("signupCond").innerHTML = "Please fill in all blanks!";
+    }
+    else
+    {
+      document.getElementById("signupCond").style.visibility = "visible";
+	  document.getElementById("signupCond").style.color = "#215F81";
+	  document.getElementById("signupCond").innerHTML = "Thank you for signing up!";
+      doRegister();
+    }
+
+                    let myModal = $("#edit-contact");
+
+                    let inputs = myModal.find("input");
+
+
+                    console.log(inputs);
+
+                    myModal.modal('show');
+
+  }
+  </script>
+</html>
