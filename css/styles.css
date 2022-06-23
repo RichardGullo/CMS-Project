@@ -89,9 +89,9 @@ body
   /*Text border*/
   -webkit-text-stroke: 2px;
   -webkit-text-stroke-color: #FFFFFC;
-  font-size: 15vmin;
+  font-size: 100px;
 	height: 150px;
-	width: 500px;
+	/* width: 500px; */
   margin: 20px;
 	position: relative;
 	line-height: 125px;
