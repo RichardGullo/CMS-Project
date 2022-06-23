@@ -225,7 +225,7 @@ input[type="deleteInput"]
 {
   text-align: center;
   background-color: transparent;
-  margin: 90px auto 0px;
+  margin: 90px 0px 0px 0px;
   padding-bottom: 20px;
   height: 550px;
   border: none;
@@ -236,15 +236,17 @@ input[type="deleteInput"]
   color: #215F81;
   font-family: 'Yantramanav', sans-serif;
   border-radius: 40px;
-  margin: 120px auto 30px;
-  height: 550px;
+  margin: 120px 0px 15px 0px;
   line-height: 20px;
   text-align: center;
   background-color: rgba(212, 232, 243, 0.6);
   -webkit-box-shadow: -2px 22px 32px -24px rgba(0,0,0,0.75);
   -moz-box-shadow: -2px 22px 32px -24px rgba(0,0,0,0.75);
   box-shadow: -2px 22px 32px -24px rgba(0,0,0,0.75);
-  height:750px;
+  min-height:500px;
+  max-width: 500px;
+  min-width: 200px;
+  width:100%;
 }
 
 .signup-redirect
@@ -306,6 +308,17 @@ input[type="deleteInput"]
 #register-link
 {
   margin-bottom: 50px;
+}
+
+@media screen and (max-width:767px){
+    #registerDiv{
+      margin-top: 0px;
+    }
+
+    #introDiv{
+      height:auto;
+      margin-top: 0px;
+    }
 }
 
 /* Homepage */
@@ -805,3 +818,4 @@ a
   text-align: right;
   margin-right: 40px;
 }
+
