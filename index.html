@@ -33,7 +33,7 @@
       <div class = "card text-center" id = "loginDiv">
         <div class = "card-body">
           <h2><strong> Log In </strong></h2>
-        <form role="form">
+        <form role="form" onsubmit="doLogin(event);">
           <div class="form-group">
           <label for="loginName" id = "login">username</label>
           <input type="text" class="form-control" id="loginName">
@@ -42,8 +42,9 @@
             <label for="loginPassword" id = "password">password</label>
             <input type="password" class="form-control" id="loginPassword">
           </div>
+          <button type="submit" id="loginButton" class="btn btn-link">
         </form>
-        <button type="button" id="loginButton" class="btn btn-link" onclick="doLogin();">
+   
       		<!-- login icon-->
           <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>

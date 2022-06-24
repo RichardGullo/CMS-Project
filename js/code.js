@@ -10,7 +10,8 @@ var lastName = "";
 /*-------------- Login Functions------------------------------ */
 
 // When user clicks log in button, we execute this.
-async function doLogin() {
+async function doLogin(evt) {
+	evt.preventDefault();
 	userEmail = "";
 	firstName = "";
 	lastName = "";

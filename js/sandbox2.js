@@ -118,54 +118,50 @@ async function requestTable() {
         // city state
         let addressSet2 = addressSet1[1].split(" ");
 
-        let zip = addressSet1[2].substring(0, addressSet1[2].indexOf(" "));
+        // zip country
+        let addressSet3 = addressSet1[2].split(" ");
 
-        let fullAddress = `${addressSet1[0]}
-           <p>${addressSet2[0] + ", " + addressSet2[1] + " " + zip}</p>`
-        let row = `<tr>
-                       <td>
-                        <div class="accordion">
-                          <div class = "card-transparent border-0">
-                              <div class="card-header info-card" id="contactName">
-                                ${data[i].first_name + " " + data[i].last_name}
-                              </div>
-                              <div id="collapseInfo" class="collapse hide" aria-labelledby="contactName" data-parent="#showHide">
-                              <div class="card-body">
-                                <div id = "address-block">
-                                <i class="fas fa-home fa-lg text-dark"></i>
-                                  ${fullAddress}
-                                </div>
-                                <div id = "phone-email-block">
-                                <i class="fas fa-phone-alt fa-lg text-dark"></i>
-                                  ${data[i].phone}
-                              <br>
-                              <i class="fas fa-envelope fa-lg text-dark"></i>
-                                  ${data[i].contactEmail}
-                                  </br>
-                                  </div>
-                                </div>
-                                </div>
-                          </div>
-                         </div>
-                        </td>
-                        <td>
-                            <div class="iconSet" style = "visibility: hidden;">
+        let fullName = `${data[i].first_name} ${data[i].last_name}`;
+
+        let street = addressSet1[0];
+        let city = addressSet2[0];
+        let state = addressSet2[1];
+        let zip = addressSet3[0];
+        let phone = data[i].phone;
+        let email = data[i].contactEmail;
+
+        let row = `<tr><td><div>
+                        <div class="contact-heading">
+                            <span>${fullName}</span>
+                            <div class="action-container">
                                 <i id="edit-button" class="fas fa-edit fa-lg text-dark" data-action="edit"></i>
                                 <i id="info-button" class="fas fa-info-circle fa-lg text-dark" data-action="info"></i>
                                 <i id="delete-button" class="fas fa-trash fa-lg text-dark" data-action="delete"></i>
                             </div>
-                        </td>
-                        </tr>`
+                        </div>
+                        <div class="contact-content" style="display:none;">
+                            <div class="address-container">
+                                <i class="fas fa-home fa-lg text-dark"></i> <span>${street} <br/>${city}, ${state} ${zip}</span>
+                            </div>
+                            <div class="phone-email-container">
+                                <i class="fas fa-phone-alt fa-lg text-dark"></i><span>${phone}</span><br/>
+                                <i class="fas fa-envelope fa-lg text-dark"></i> ${email}
+                            </div>
+                        </div>
+                    </div></td></tr>`;
+
         table.innerHTML += row;
+
+
 
     }
     // Add hover event to each row
     $("#myTable tr").hover(
         function () {
-            $(this).find(".iconSet").css("visibility", "visible");
+            $(this).find(".action-container").css("visibility", "visible");
         },
         function () {
-            $(this).find(".iconSet").css("visibility", "hidden");
+            $(this).find(".action-container").css("visibility", "hidden");
         }
     );
 }
@@ -183,54 +179,48 @@ function buildTable(data) {
         // city state
         let addressSet2 = addressSet1[1].split(" ");
 
-        let zip = addressSet1[2].substring(0, addressSet1[2].indexOf(" "));
+        // zip country
+        let addressSet3 = addressSet1[2].split(" ");
 
-        let fullAddress = `${addressSet1[0]}
-           <p>${addressSet2[0] + ", " + addressSet2[1] + " " + zip}</p>`
-        let row = `<tr>
-                       <td>
-                        <div class="accordion">
-                          <div class = "card-transparent border-0">
-                              <div class="card-header info-card" id="contactName">
-                                ${data[i].first_name + " " + data[i].last_name}
-                              </div>
-                              <div id="collapseInfo" class="collapse hide" aria-labelledby="contactName" data-parent="#showHide">
-                              <div class="card-body">
-                                <div id = "address-block">
-                                <i class="fas fa-home fa-lg text-dark"></i>
-                                  ${fullAddress}
-                                </div>
-                                <div id = "phone-email-block">
-                                <i class="fas fa-phone-alt fa-lg text-dark"></i>
-                                  ${data[i].phone}
-                              <br>
-                              <i class="fas fa-envelope fa-lg text-dark"></i>
-                                  ${data[i].contactEmail}
-                                  </br>
-                                  </div>
-                                </div>
-                                </div>
-                          </div>
-                         </div>
-                        </td>
-                        <td>
-                            <div class="iconSet" style = "visibility: hidden;">
+        let fullName = `${data[i].first_name} ${data[i].last_name}`;
+
+        let street = addressSet1[0];
+        let city = addressSet2[0];
+        let state = addressSet2[1];
+        let zip = addressSet3[0];
+        let phone = data[i].phone;
+        let email = data[i].contactEmail;
+
+        let row = `<tr><td><div>
+                        <divclass="contact-heading">
+                            <span>${fullName}</span>
+                            <div class="action-container">
                                 <i id="edit-button" class="fas fa-edit fa-lg text-dark" data-action="edit"></i>
                                 <i id="info-button" class="fas fa-info-circle fa-lg text-dark" data-action="info"></i>
                                 <i id="delete-button" class="fas fa-trash fa-lg text-dark" data-action="delete"></i>
                             </div>
-                        </td>
-                        </tr>`
+                        </divclass=>
+                        <div class="contact-content" style="display:none;">
+                            <div class="address-container">
+                                <i class="fas fa-home fa-lg text-dark"></i> <span>${street} <br/>${city}, ${state} ${zip}</span>
+                            </div>
+                            <div class="phone-email-container">
+                                <i class="fas fa-phone-alt fa-lg text-dark"></i><span>${phone}</span><br/>
+                                <i class="fas fa-envelope fa-lg text-dark"></i> ${email}
+                            </div>
+                        </div>
+                    </div></td></tr>`;
+
         table.innerHTML += row;
 
     }
     // Add hover event to each row
     $("#myTable tr").hover(
         function () {
-            $(this).find(".iconSet").css("visibility", "visible");
+            $(this).find(".action-container").css("visibility", "visible");
         },
         function () {
-            $(this).find(".iconSet").css("visibility", "hidden");
+            $(this).find(".action-container").css("visibility", "hidden");
         }
     );
 
@@ -279,8 +269,8 @@ function handleClick(evt) {
             global_row_index = evt.target.closest("tr").rowIndex;
             // selects the current row
             let clickedRow = $(evt.target).closest("tr");
-
-            clickedRow.find(".collapse").toggle();
+            console.log(clickedRow.find(".contact-content"));
+            clickedRow.find(".contact-content").toggle();
         }
         else if (action == "delete") {
             // stores the row index
@@ -313,7 +303,8 @@ function handleClick(evt) {
 
 
 // Edit Confirm button - updates contact in database and table
-$("#confirm-edit").click(async function () {
+$("#edit-contact").submit(async function (event) {
+    event.preventDefault();
     let myModal = $("#edit-contact");
 
     let inputs = myModal.find("input");
@@ -340,7 +331,7 @@ $("#confirm-edit").click(async function () {
 
     let result = await response.json();
 
-    if(result['error'] != ''){
+    if (result['error'] != '') {
         console.log(`Error: ${result['error']}`);
         return;
     }
@@ -434,7 +425,7 @@ $("#recentlyAdded").click(function () {
 
 // confirm add button - modal button that adds user to database
 
-$("#confirm-add").click( async function () {
+$("#confirm-add").click(async function () {
     let myModal = $("#add-contact");
 
     let inputs = myModal.find("input");
@@ -454,14 +445,14 @@ $("#confirm-add").click( async function () {
     formData.append('phone', inputs[2].value);
     formData.append('userEmail', userEmail);
 
-    let response = await  fetch(`${baseUrl}/addContact.php`, {
+    let response = await fetch(`${baseUrl}/addContact.php`, {
         method: "POST",
         body: formData
     });
 
     let result = await response.json();
 
-    if(result['error'] != ''){
+    if (result['error'] != '') {
         console.log(`Error: ${result['error']}`);
         return;
     }
@@ -501,7 +492,7 @@ $("#confirm-delete").click(async function () {
 
     let result = await response.json();
 
-    if(result['error'] != ''){
+    if (result['error'] != '') {
         console.log(`Error: ${result['error']}`);
         return;
     }
@@ -526,7 +517,7 @@ $("#showHide").click(function () {
     if (globalTableArray == undefined || globalTableArray.length < 0)
         return;
 
-    $(".collapse").toggle();
+    $(".contact-content").toggle();
 
 })
 

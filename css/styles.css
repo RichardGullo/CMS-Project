@@ -90,9 +90,7 @@ body
   -webkit-text-stroke: 2px;
   -webkit-text-stroke-color: #FFFFFC;
   font-size: 100px;
-	height: 150px;
 	/* width: 500px; */
-  margin: 20px;
 	position: relative;
 	line-height: 125px;
 	font-family: 'Titillium Web', 'IBM Plex Sans', sans-serif;
@@ -331,7 +329,7 @@ input[type="deleteInput"]
 .navbar
 {
   margin: 0px;
-  padding-top: 10px;
+  padding: 20px 10px;
   background-color: rgba(212, 232, 243, 0.6);
   height: 30%;
   line-height: .75em;
@@ -347,6 +345,8 @@ input[type="deleteInput"]
 
 
 }
+
+
 
 input[type="search"]
 {
@@ -372,7 +372,7 @@ input[type="search"]
 
 h1, #usernameDisplay
 {
-	font-size: 8vmin;
+	font-size: 48px;
 
     /*margin: 20px;*/
     /*text-align: center;
@@ -396,7 +396,7 @@ h1, #usernameDisplay
 
 #logOut
 {
-	font-size: 2vmin;
+	font-size: 20px;
 	font-weight: normal;
 	line-height: 0em;
   padding-right: 10px;
@@ -460,7 +460,6 @@ h1, #usernameDisplay
 {
   font-size: 60px;
   /*padding-top: 100px;*/
-  width: 60%;
   padding-left: 25px;
   padding-bottom: 20px;
   color: #215F81;
@@ -504,19 +503,45 @@ h1, #usernameDisplay
     box-shadow: 0 8px 6px -6px gray;
 }
 
-#address-block
-{
-  float:left;
-  line-height: 2;
+.table td{
+  padding: 20px 10px;
+  vertical-align: middle;
 }
 
-#phone-email-block
-{
-  /* float: right; */
-  float: inline-end;
-  padding-left: 60%;
-  line-height: 2;
+.contact-heading{
+  display: flex;
+  justify-content: space-between;
 }
+
+.contact-content{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  max-width: 700px;
+}
+
+.action-container{
+  visibility: hidden;
+}
+
+
+@media screen and (max-width:560px){
+  .contact-content{
+    flex-direction: column;
+  }
+
+
+}
+
+
+@media screen and (max-width:560px){
+
+  
+  .contact-content{
+    flex-direction: column;
+  }
+}
+
 
 /* Homepage */
 /* Add/Delete sidebar */
@@ -546,12 +571,11 @@ h1, #usernameDisplay
   padding-bottom: 30px;
 }
 
-#addContact,.add-contact
+#addContact
 {
-  float: right;
   font-size: 20px;
   width: 200px;
-  position: relative;
+  position: absolute;
   top: 30px;
   height: 40px;
   bottom: 0;
@@ -561,16 +585,17 @@ h1, #usernameDisplay
   border-right: #D4E8F3;
   border-left: #D4E8F3;
   border-width: 4px;
+  top:0px;right:70px
 }
 
-#addContact:hover, .add-contact:hover
+#addContact:hover
 {
   text-decoration: none;
   color: #86BBD8;
   border-color: #86BBD8;
 }
 
-#addContact:active, #addContact:focus .add-contact:focus, .add-contact:active{
+#addContact:active, #addContact:focus{
   text-decoration: none;
   outline: 0 none !important;
 
@@ -800,6 +825,8 @@ a
 
 .edit-sidebar{
   overflow-y:auto;
+  width:100%;
+  max-width: 400px;
 }
 
 .edit-sidebar::-webkit-scrollbar{
@@ -808,6 +835,8 @@ a
 
 .add-sidebar{
   overflow-y:auto;
+  width:100%;
+  max-width: 400px;
 }
 
 .add-sidebar::-webkit-scrollbar{
@@ -817,5 +846,31 @@ a
 .iconSet{
   text-align: right;
   margin-right: 40px;
+}
+
+@media screen and (max-width:750px) {
+  .navbar{
+    flex-direction: column;
+  }
+
+  #homepageLogo{
+    order:0;
+  }
+  
+  #searchBarContainer{
+    order:1;
+  }
+  
+  #homePageHeader{
+    order:2;
+  }
+
+  #addContact{
+    bottom:0px;
+    left:0;
+    top:auto;
+    right:auto;
+  }
+
 }
 
