@@ -425,7 +425,9 @@ $("#recentlyAdded").click(function () {
 
 // confirm add button - modal button that adds user to database
 
-$("#confirm-add").click(async function () {
+$("#confirm-add").submit(async function (event) {
+
+    event.preventDefault();
     let myModal = $("#add-contact");
 
     let inputs = myModal.find("input");
