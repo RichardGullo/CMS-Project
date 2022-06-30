@@ -2,24 +2,24 @@
 
 $connection = mysqli_connect('localhost','root','','jadar');
 
-if($connection){
-    // echo "We are connected to the database";
-}
-else{
-    echo("Database connection failed");
+$payload = array("error" => "", "success" => "");
+
+if(!$connection){
+    $payload['error'] = 'Could not connect to database';
+    echo json_encode($payload);
+    exit();
 }
 
 $userEmail = $_POST['userEmail'];
-
-// $query = "INSERT INTO todos(todo)
-//         VALUES(".'"'.$textField.'"'.")";
 
 $query = "SELECT * FROM users WHERE email = '".$userEmail."'";
 
 $result = mysqli_query($connection,$query);
 
 if(!$result){
-    die('Query failed');
+    $payload['error'] = 'Query to database failed';
+    echo json_encode($payload);
+    exit();
 }
 else
 {
@@ -31,52 +31,26 @@ else
     $result = mysqli_query($connection,$query);
 
     if(!$result){
-        die('Query failed');
-    }
-    else
-    {
-        $string = JSONParse($result);
-        echo $string;
+        $payload['error'] = 'Query to database failed';
+        echo json_encode($payload);
+        exit();
     }
 
-}
-
-
-function JSONParse($data)
-{
-    $i = 0;
-    $string = "";
-
-    while($row = mysqli_fetch_assoc($data))
-    {
-        if($i == 0)
-            $string = JSONParseStatement($row);
-        else
-            $string = $string.','.JSONParseStatement($row);
-
-        $i++;
-    }
-
-    return "[".$string."]";
-
-}
-
-function JSONParseStatement($data)
-{
-    $i = 0;
-    $string = "";
+    $result = getRows($result);
     
-    foreach($data as $datum => $datum_value){
+    $payload['data'] = $result;
+    echo json_encode($payload);
 
-        if($i++ != count($data)-1)
-            $string = $string.
-                '"'.$datum. '"'.":"."\"".$datum_value."\"".",";
-        else
-            $string = $string.
-                '"'.$datum. '"'.":"."\"".$datum_value."\"";   
+}
+
+
+function getRows($result){
+    $rows = array();
+    while($row = mysqli_fetch_assoc($result)){
+        $rows[] = $row;
     }
 
-    return '{'.$string.'}';
+    return $rows;
 }
 
 

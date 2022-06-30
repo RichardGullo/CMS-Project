@@ -24,13 +24,26 @@ if(!$result){
 }
 else
 {
-    $rows = array();
-    while($r = mysqli_fetch_assoc($result)){
-        $rows[] = $r;
+    $result = getRows($result);
+
+    if(count($result) < 1){
+        $payload['error'] = 'Invalid Username/Password';
+        echo json_encode($payload);
+        exit();
     }
 
-    echo json_encode($rows);
+    $payload['data'] = $result;
+    echo json_encode($payload);
 
+}
+
+function getRows($result){
+    $rows = array();
+    while($row = mysqli_fetch_assoc($result)){
+        $rows[] = $row;
+    }
+
+    return $rows;
 }
 
 ?>
