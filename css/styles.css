@@ -520,6 +520,12 @@ h1, #usernameDisplay
   max-width: 700px;
 }
 
+.contact-content div{
+  flex:1;
+}
+
+
+
 .action-container{
   visibility: hidden;
 }
