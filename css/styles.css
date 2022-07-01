@@ -531,24 +531,6 @@ h1, #usernameDisplay
 }
 
 
-@media screen and (max-width:560px){
-  .contact-content{
-    flex-direction: column;
-  }
-
-
-}
-
-
-@media screen and (max-width:560px){
-
-  
-  .contact-content{
-    flex-direction: column;
-  }
-}
-
-
 /* Homepage */
 /* Add/Delete sidebar */
 
@@ -852,6 +834,14 @@ a
 .iconSet{
   text-align: right;
   margin-right: 40px;
+}
+
+@media screen and (max-width:560px){
+  .contact-content{
+    flex-direction: column;
+  }
+
+
 }
 
 @media screen and (max-width:750px) {
