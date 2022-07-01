@@ -1,11 +1,7 @@
-var urlBase = 'http://COP4331-29.com/LAMPAPI';
-var extension = 'php';
-
 var userEmail = "";
 var userName = "";
 var firstName = "";
 var lastName = "";
-
 
 /*-------------- Login Functions------------------------------ */
 
@@ -15,6 +11,7 @@ async function doLogin(evt) {
 	userEmail = "";
 	firstName = "";
 	lastName = "";
+
 	let error = document.getElementById("loginResult");
 	error.innerHTML="";
 
@@ -64,17 +61,26 @@ function doLogout() {
 }
 
 // When user clicks register, we do this.
-function doRegister() {
+async function doRegister(event) {
+	event.preventDefault();
 	// Grabs form fields
 	userEmail = document.getElementById("userEmail").value;
 	userName = document.getElementById("userName").value;
 	firstName = document.getElementById("firstName").value;
 	lastName = document.getElementById("lastName").value;
 	var password = document.getElementById("password").value;
+
+	let error = document.getElementById("registerResult");
+	error.innerHTML="";
 	// var hash = md5( password );
+	error.innerHTML="";
 
 	document.getElementById("registerResult").innerHTML = "";
-
+	
+	if(userEmail == "" || userName == "" || firstName == "" || lastName == "" || password == ""){
+		error.innerHTML = "Please fill in all fields.";
+		return;
+	}
 
 	let formData = new FormData();
 	formData.append('firstName', firstName);
@@ -82,72 +88,28 @@ function doRegister() {
 	formData.append('pass', password);
 	formData.append('email', userEmail);
 
-	fetch("http://192.168.86.34/JADAR/LAMPAPI2/register.php", {
+	let response = await fetch("http://192.168.86.34/jadar-api/register.php", {
 		method: "POST",
 		body: formData
-	}).then(function (res) {
-		return res.json();
-
-
-	}).then(function (data) {
-
-		// document.getElementById("registerResult").innerHTML = "Error with register.";
-
-		userName = data.first_name;
-		userEmail = data.email;
-		firstName = data.first_name;
-		lastName = data.last_name;
-
-		saveCookie();
-		window.location.href = "homepage.html";
-
 	});
-}
 
-function doContactSearch() {
-	// Grabs form fields
-	firstName = document.getElementById("search-bar").value;
-	lastName = "";//document.getElementById("lastName").value;
+	let result = await response.json();
 
-	document.getElementById("contactSearchResult").innerHTML = "";
-
-	// Combine form field variables into JSON string
-	var jsonPayload = '{"userName":"' + userName + '", "firstName" : "' + firstName + '"}';
-	var url = urlBase + '/ContactSearch2.' + extension;
-
-	// Connection
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try {
-		xhr.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
-				var jsonObject = JSON.parse(xhr.responseText);
-
-				contactList = "";
-				for (var i = 0; i < jsonObject.contacts.length; i++) {
-					//contactList += JSON.stringify(jsonObject.contacts[i]);
-					contactList += jsonObject.contacts[i].contactEmail + ", ";
-					contactList += jsonObject.contacts[i].firstName + ", ";
-					contactList += jsonObject.contacts[i].lastName + ", ";
-					contactList += jsonObject.contacts[i].address + ", ";
-					contactList += jsonObject.contacts[i].phone;
-					if (i < jsonObject.contacts.length - 1) {
-						contactList += "<br />\r\n";
-					}
-				}
-
-				document.getElementsByTagName("p")[0].innerHTML = contactList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch (err) {
-		document.getElementById("contactSearchResult").innerHTML = err.message;
+	if(result['error'] != ''){
+		error.innerHTML= result['error'];
+		return;
 	}
 
+	userName = result['data'][0].first_name;
+	userEmail = result['data'][0].email;
+	firstName = result['data'][0].first_name;
+	lastName = result['data'][0].last_name;
+
+	saveCookie();
+	window.location.href = "homepage.html";
 }
+
+
 
 /*-----------------Top of Page Button---------------------------*/
 

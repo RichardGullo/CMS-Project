@@ -192,24 +192,24 @@ function buildTable(data) {
         let email = data[i].contactEmail;
 
         let row = `<tr><td><div>
-                        <divclass="contact-heading">
-                            <span>${fullName}</span>
-                            <div class="action-container">
-                                <i id="edit-button" class="fas fa-edit fa-lg text-dark" data-action="edit"></i>
-                                <i id="info-button" class="fas fa-info-circle fa-lg text-dark" data-action="info"></i>
-                                <i id="delete-button" class="fas fa-trash fa-lg text-dark" data-action="delete"></i>
-                            </div>
-                        </divclass=>
-                        <div class="contact-content" style="display:none;">
-                            <div class="address-container">
-                                <i class="fas fa-home fa-lg text-dark"></i> <span>${street} <br/>${city}, ${state} ${zip}</span>
-                            </div>
-                            <div class="phone-email-container">
-                                <i class="fas fa-phone-alt fa-lg text-dark"></i><span>${phone}</span><br/>
-                                <i class="fas fa-envelope fa-lg text-dark"></i> ${email}
-                            </div>
-                        </div>
-                    </div></td></tr>`;
+        <div class="contact-heading">
+            <span>${fullName}</span>
+            <div class="action-container">
+                <i id="edit-button" class="fas fa-edit fa-lg text-dark" data-action="edit"></i>
+                <i id="info-button" class="fas fa-info-circle fa-lg text-dark" data-action="info"></i>
+                <i id="delete-button" class="fas fa-trash fa-lg text-dark" data-action="delete"></i>
+            </div>
+        </div>
+        <div class="contact-content" style="display:none;">
+            <div class="address-container">
+                <i class="fas fa-home fa-lg text-dark"></i> <span>${street} <br/>${city}, ${state} ${zip}</span>
+            </div>
+            <div class="phone-email-container">
+                <i class="fas fa-phone-alt fa-lg text-dark"></i><span>${phone}</span><br/>
+                <i class="fas fa-envelope fa-lg text-dark"></i> ${email}
+            </div>
+        </div>
+    </div></td></tr>`;
 
         table.innerHTML += row;
 
@@ -309,10 +309,22 @@ $("#edit-contact").submit(async function (event) {
 
     let inputs = myModal.find("input");
 
+    let error = document.getElementById("editContactError");
+    error.classList.add("d-none");
+
     // Remove white space from both sides of input
     $(inputs).each(function (index, element) {
+        if($(this).val() == ""){
+            error.classList.remove("d-none");
+            error.innerHTML="Please fill in all fields";
+            return false;
+        }
         $(this).val($.trim($(this).val()));
     });
+
+    if(!error.classList.contains("d-none"))
+        return;
+
 
     let formData = new FormData();
 
@@ -425,18 +437,32 @@ $("#recentlyAdded").click(function () {
 
 // confirm add button - modal button that adds user to database
 
-$("#confirm-add").submit(async function (event) {
+$("#addContactForm").submit(async function (event) {
 
     event.preventDefault();
-    let myModal = $("#add-contact");
+
+
+    let myModal = $("#addContactForm");
 
     let inputs = myModal.find("input");
+
+    let error = document.getElementById("addContactError");
+    error.classList.add("d-none");
 
     let formData = new FormData();
 
     $(inputs).each(function (index, element) {
+        if($(this).val() == ""){
+            error.classList.remove("d-none");
+            error.innerHTML="Please fill in all fields";
+            return false;
+        }
         $(this).val($.trim($(this).val()));
     });
+
+    if(!error.classList.contains("d-none"))
+        return;
+
 
     console.log(inputs);
 
@@ -543,25 +569,13 @@ $("#add-phone").on('input', function (evt) {
     $(phone).val(phoneFormat(phone, "#error-add-phone"));
 });
 
-function emailValidation(sel, id) {
-    let input = $(sel).val();
-    let $error = $(id);
-    let testExp = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
-
-    console.log("after trim:" + $(sel).val());
-    $(sel).val($(sel).val().replace(/^\s+/, ""));
-    console.log("before trim:" + $(sel).val());
-
-    if (!testExp.test(input)) {
-        $error.show();
-        $error.text("Invalid email");
-        $(sel).css("background-color", "pink");
-    }
-    else {
-        $error.hide();
-        $(sel).css("background-color", "");
-    }
-}
+// function ValidateEmail(mail) 
+// {
+//  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))  
+//     return true;
+  
+//     return false;
+// }
 
 function phoneFormat(phone, error) {
 
