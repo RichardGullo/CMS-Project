@@ -110,32 +110,6 @@ async function doRegister(event) {
 }
 
 
-
-/*-----------------Top of Page Button---------------------------*/
-
-window.onscroll = function () { scrollFunction() };
-
-function scrollFunction() {
-	var mybutton = document.getElementById("topBtn");
-
-	if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-		mybutton.style.display = "block";
-	} else {
-		mybutton.style.display = "none";
-	}
-}
-
-function topOfPage() {
-	var mybutton = document.getElementById("topBtn");
-
-	document.body.scrollTop = 0; // For Safari
-	document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
-
-
-/*-------------------------------------------------------------*/
-
-
 /*----------------Cookie Functions------------------------------*/
 
 function saveCookie() {
